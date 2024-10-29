@@ -16,13 +16,13 @@ openSoftware:
                     wangxiaoliang30@h-partners.com,
                     guoxiaozhen1@h-partners.com,
                     zhaiwenjie1@huawei.com,
-                    zhengkaiwen7@h-partners.com,
+                    zhengkaiwen7@h-partners.com
 
                     
   test_case:
-                  C:\Users\Administrator\Desktop\本地play_UI _easySoftWare\test_cases\软件市场UI自动化测试用例.xlsx
+                  \本地play_UI _easySoftWare\test_cases\软件市场UI自动化测试用例.xlsx
   case_numbers:
-                  23
+                  20
   operation_dict: openSoftware_operation_dict
   api_tag:
                   openSoftware
@@ -55,23 +55,23 @@ modelers:
                     jun.zhongjun@huawei.com,
                     george.cao@huawei.com,
                     gongzhuangbang1@huawei.com,
-                    zhaiwenjie1@huawei.com,
                     taofeihu1@huawei.com,
                     lichaoran1@huawei.com,
                     wangxiaoliang30@h-partners.com,
                     guoxiaozhen1@h-partners.com,
                     zhaiwenjie1@huawei.com,
-                    zhongyuanke@huawei.com
+                    zhongyuanke@huawei.com,
+                    zhengkaiwen7@h-partners.com
+
   test_case:
-                    C:\Users\Administrator\Desktop\本地play_UI _easySoftWare\test_cases\魔乐社区UI自动化测试用例.xlsx
-  case_numbers: 7
+                    \本地play_UI _easySoftWare\test_cases\魔乐社区UI自动化测试用例.xlsx
+  case_numbers: 9
   operation_dict: modelers_operation_dict
   api_tag: modelers
   email_name:
                 魔乐社区UI自动化冒烟测试报告
   model_names:
                 modelers-账号功能,
-                modelers-个人中心,
                 modelers-组织,
                 modelers-个人中心,
                 modelers-数据集,
