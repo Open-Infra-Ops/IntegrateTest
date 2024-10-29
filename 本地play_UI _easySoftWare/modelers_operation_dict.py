@@ -25,14 +25,17 @@ def tag_list_operation(arglist):
 # 进入环境
 # 首次登录环境
 def login_first(page: sync_api.Page, arglist: list):
-    page = login_common(page, arglist)
+    page = login_common1(page, arglist)
     page.get_by_text("跳过").click()
-    page.get_by_role("button", name="全部接受").click()
+    try:
+        page.get_by_role("button", name="全部接受").click()
+    except:
+        pass
     return page
 
 
 # 登录环境
-def login_common(page: sync_api.Page, arglist: list):
+def login_common1(page: sync_api.Page, arglist: list):
     # sh
     # page.goto("https://openmind.test.osinfra.cn/")
     # test
@@ -42,10 +45,7 @@ def login_common(page: sync_api.Page, arglist: list):
     # page.locator('#e2e_header_loginBtn').click()
     # page.wait_for_selector('#e2e_login_account')
     # page.locator('#e2e_login_account').fill(arglist[0])
-    try:
-        page.get_by_role("button", name="登录", exact=True).click()
-    finally:
-        pass
+    page.get_by_role("button", name="登录", exact=True).click()
     page.get_by_placeholder('请输入您的手机号/用户名/邮箱地址').fill(arglist[0])
     # page.locator('#e2e_login_password').fill(arglist[1])
     page.get_by_placeholder('请输入您的密码').fill(arglist[1])
@@ -56,7 +56,13 @@ def login_common(page: sync_api.Page, arglist: list):
     #     login_sh(page, arglist)
     return page
 
-
+def login_common( page: sync_api.Page,arglist: list):
+    page = login_common1(page, arglist)
+    try:
+        page.get_by_role("button", name="全部接受").click()
+    except:
+        pass
+    return page
 # 登录生产环境
 def login(page: sync_api.Page):
     page.goto("https://telecom.openmind.cn/")
@@ -154,6 +160,7 @@ def like_and_not_like(page: sync_api.Page):
     page.get_by_role("button", name="收藏").click()
     page.wait_for_timeout(1000)
     page.get_by_role("button", name="收藏").click()
+    return page
 
 
 # 进入账户设置页面
@@ -203,6 +210,7 @@ def update_user_picture(page: sync_api.Page, arglist: list):
     page.wait_for_timeout(1000)
     page.get_by_role("button", name="保存头像").click()
     page.wait_for_timeout(3000)
+    return page
 
 
 # 组织
