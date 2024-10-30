@@ -17,7 +17,7 @@ class QQMail:
         self.nickName = None
         self.msg = None
         self.smtp = None
-        self.smtp_server_host = 'smtp.qq.com'
+        self.smtp_server_host = 'smtp.163.com'
         self.smtp_sender = smtp_sender
         self.smtp_passwd = smtp_passwd
         self.smtp_receiver = smtp_receiver
@@ -64,8 +64,8 @@ class QQMail:
 def send_mail(test_data, big_key):
     config_list = YamlHandler(rf'{running_home}\本地play_UI _easySoftWare\config\config.yaml').read_yaml()
     # 读取发件邮箱信息
-    lsmtp_sender = '2126744957@qq.com'
-    lsmtp_password = 'qqvynwenzdimhjcj'
+    lsmtp_sender = '18801113053@163.com'
+    lsmtp_password = 'RGTWu33QTNsmV9nj'
     test_data = test_data
     false_count = 0
 
