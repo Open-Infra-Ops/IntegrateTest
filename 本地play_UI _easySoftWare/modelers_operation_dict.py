@@ -37,11 +37,11 @@ def login_first(page: sync_api.Page, arglist: list):
 # 登录环境
 def login_common1(page: sync_api.Page, arglist: list):
     # sh
-    # page.goto("https://openmind.test.osinfra.cn/")
+    page.goto("https://openmind.test.osinfra.cn/")
     # test
     # page.goto("https://modelfoundry.test.osinfra.cn/")
     # 生产
-    page.goto("https://modelers.cn/")
+    # page.goto("https://modelers.cn/")
     # page.locator('#e2e_header_loginBtn').click()
     # page.wait_for_selector('#e2e_login_account')
     # page.locator('#e2e_login_account').fill(arglist[0])
@@ -79,6 +79,7 @@ def login(page: sync_api.Page):
 # 进入首页
 def go_home(page: sync_api.Page):
     page.locator('#e2e_headerNav_home').click()
+    return page
 
 
 # 退出登录
@@ -166,6 +167,7 @@ def like_and_not_like(page: sync_api.Page):
 # 进入账户设置页面
 def enter_user_setting(page: sync_api.Page):
     page.locator("#e2e_myAside_settings").click()
+    return page
 
 
 # 查看我创建的模型
@@ -174,6 +176,7 @@ def show_my_models(page: sync_api.Page):
     page.locator('#e2e_myAside_creation').click()
     page.get_by_text('我的模型').click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 查看我创建的组织
@@ -181,6 +184,7 @@ def show_my_orgs(page: sync_api.Page):
     # name = inspect.currentframe().f_code.co_name
     page.locator('#e2e_myAside_organization').click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 查看我创建的数据集
@@ -189,6 +193,7 @@ def show_my_datasets(page: sync_api.Page):
     page.locator('#e2e_myAside_creation').click()
     page.get_by_text('数据集').click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 修改用户昵称签名
@@ -227,6 +232,7 @@ def hover_create_organization(page: sync_api.Page, arglist: list):
     page.wait_for_timeout(5000)
     page.locator('#e2e_newOrg_submitBtn').click()
     page.wait_for_timeout(1000)
+    return page
 
 
 # 组织创建模型
@@ -234,6 +240,7 @@ def org_create_model(page: sync_api.Page, arglist: list):
     page.locator('.o-dropdown').get_by_text(' 创建').click()
     page.locator('.o-dropdown-item').get_by_text('创建模型').click()
     create_model(page, arglist)
+    return page
 
 
 # 组织创建数据集
@@ -252,6 +259,7 @@ def org_invite_members(page: sync_api.Page, arglist: list):
     page.get_by_placeholder("请输入用户名，添加新成员").fill(arglist[0])
     page.get_by_role("button", name="发送邀请").click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 允许主动申请加入组织
@@ -260,6 +268,7 @@ def allow_want_in_org(page: sync_api.Page):
     page.locator('#e2e_orgDetailMenu_account').click()
     page.get_by_text("是").click()
     page.get_by_role("button", name="保存修改").click()
+    return page
 
 
 # 同意主动加入组织
@@ -269,6 +278,7 @@ def allow_in_org(page: sync_api.Page):
     page.locator('#e2e_orgDetailMenu_members-manage').click()
     page.locator('.o-link-label').get_by_text('查看').click()
     page.locator('.o-btn.o-btn-primary.o-btn-large.o-btn-solid').get_by_text('接受').click()
+    return page
 
 
 # 同意邀请加入组织
@@ -277,6 +287,7 @@ def agree_org_invite(page: sync_api.Page):
     enter_user_center(page)
     page.get_by_text("我的组织").click()
     page.locator("a").filter(has_text="接受").click()
+    return page
 
 
 # 申请加入组织
@@ -288,6 +299,7 @@ def user_want_in_org(page: sync_api.Page, arglist: list):
     page.get_by_role("button", name="申请加入").click()
     page.get_by_placeholder("请输入申请理由，不超过20个字符").fill(arglist[1])
     page.get_by_role("button", name="提交").click()
+    return page
 
 
 # 拒绝加入组织
@@ -296,12 +308,14 @@ def refuse_org_invite(page: sync_api.Page):
     enter_user_center(page)
     page.get_by_text("我的组织").click()
     page.locator("a").filter(has_text="拒绝").click()
+    return page
 
 
 # 查看指定组织
 def show_point_org(page: sync_api.Page, arglist: list):
     page.locator('.org-fullname').get_by_text(arglist[0]).click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 删除当前组织
@@ -312,6 +326,7 @@ def delete_current_org(page: sync_api.Page):
     page.locator('#e2e_deleteOrg_inputValidation').fill('我已知晓，并确认删除组织')
     page.locator('#e2e_deleteOrg_deleteBtn').click()
     page.locator('.o-btn.o-btn-normal.o-btn-large.o-btn-outline.o-dlg-btn').click()
+    return page
 
 
 # 修改组织昵称介绍链接
@@ -323,6 +338,7 @@ def update_org(page: sync_api.Page, arglist: list):
     page.get_by_placeholder('关联组织官网或GitHub地址').fill(arglist[2])
     page.locator('#e2e_orgDetail_submitDetailBtn').click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 修改组织封面
@@ -333,6 +349,7 @@ def update_org_picture(page: sync_api.Page, arglist: list):
     page.get_by_role("button", name="选择照片").set_input_files(arglist[0])
     page.get_by_role("button", name="保存头像").click()
     page.wait_for_timeout(4000)
+    return page
 
 
 # 数据集
@@ -349,6 +366,7 @@ def hover_create_dataset(page: sync_api.Page, arglist: list):
     # page.locator('.o-option').get_by_text(arglist[3]).click()
     # page.locator('#e2e_newDatasets_submitBtn').click()
     # page.wait_for_timeout(1500)
+    return page
 
 
 # 创建数据集
@@ -361,12 +379,14 @@ def create_dataset(page: sync_api.Page, arglist: list):
     page.locator('.o-option').get_by_text(arglist[3]).click()
     page.locator('#e2e_newDatasets_submitBtn').click()
     page.wait_for_timeout(1500)
+    return page
 
 
 # 查看指定数据集
 def show_point_dataset(page: sync_api.Page, arglist: list):
     page.locator('.title').get_by_text(arglist[0]).click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 删除当前数据集
@@ -375,6 +395,7 @@ def delete_current_dataset(page: sync_api.Page):
     page.locator('.o-tab-nav').get_by_text('设置').click()
     page.locator('#e2e_deleteDataset_inputValidation').fill('我已知晓，并确认删除数据集')
     page.locator('#e2e_deleteDataset_deleteBtn').click()
+    return page
 
 
 # 修改当前数据集私有
@@ -382,11 +403,13 @@ def change_current_dataset_private(page: sync_api.Page):
     page.locator('.o-tab-nav').get_by_text('设置').click()
     page.locator('.o-radio-label').get_by_text('私有数据集').click()
     page.locator('#e2e_modifyDataset_submit').click()
+    return page
 
 
 # 查看数据集
 def go_datasets(page: sync_api.Page):
     page.locator('#e2e_headerNav_datasets').click()
+    return page
 
 
 # 模型
@@ -397,6 +420,7 @@ def hover_create_model(page: sync_api.Page, arglist: list):
     page.locator('#e2e_headerUser_newModel').click()
     # 填入参数
     create_model(page, arglist)
+    return page
     # page.locator('#e2e_newModels_nameInput').fill(arglist[0])
     # page.get_by_placeholder("请填写模型别名").fill(arglist[1])
     # if arglist[2] == '私有模型':
@@ -418,16 +442,18 @@ def create_model(page: sync_api.Page, arglist: list):
         page.get_by_text('私有模型').click()
     elif arglist[2] == '公开模型':
         page.get_by_text('公开模型').click()
-    page.locator('#e2e_newModels_licenseSelect').click()
+    page.get_by_placeholder('请选择许可证').click()
     page.get_by_text(arglist[3], exact=True).click()
     page.locator('#e2e_newModels_submitBtn').click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 查看指定模型
 def show_point_model(page: sync_api.Page, arglist: list):
     page.locator('.title').get_by_text(arglist[0]).click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 删除当前模型
@@ -436,6 +462,8 @@ def delete_current_model(page: sync_api.Page):
     page.locator('.o-tab-nav').get_by_text('设置').click()
     page.locator('#e2e_deleteModel_inputValidation').fill('我已知晓，并确认删除模型')
     page.locator('#e2e_deleteModel_deleteBtn').click()
+    return page
+
 
 
 # 修改当前模型私有
@@ -446,6 +474,7 @@ def change_current_model_private(page: sync_api.Page):
     page.wait_for_timeout(2000)
     page.get_by_text("私有模型").click()
     page.get_by_role("button", name="保存修改").click()
+    return page
 
 
 # 修改当前模型别名
@@ -453,11 +482,13 @@ def change_current_model_name(page: sync_api.Page, arglist: list):
     page.locator('.o-tab-nav').get_by_text('设置').click()
     page.get_by_placeholder('请填写模型别名').fill(arglist[0])
     page.get_by_role("button", name="保存修改").click()
+    return page
 
 
 # 查看模型库
 def go_models(page: sync_api.Page):
     page.locator('#e2e_headerNav_models').click()
+    return page
 
 
 # 空间
@@ -496,6 +527,7 @@ def hover_create_space(page: sync_api.Page, arglist: list):
     # 创建
     page.get_by_role("button", name="创建").click()
     page.wait_for_timeout(2000)
+    return page
 
 
 # 删除当前空间
@@ -503,6 +535,7 @@ def delete_current_space(page: sync_api.Page):
     page.get_by_role("link", name="设置").click()
     page.get_by_placeholder("请输入", exact=True).fill("我已知晓，并确认删除空间")
     page.locator("#e2e_deleteSpace_deleteBtn").click()
+    return page
 
 
 # 修改当前空间
@@ -520,6 +553,7 @@ def change_current_space(page: sync_api.Page, arglist: list):
     # 修改
     page.get_by_role("button", name="确认修改").click()
     page.wait_for_timeout(2000)
+    return page
 
 
 # 创建变量
@@ -530,6 +564,7 @@ def create_variable(page: sync_api.Page, arglist: list):
     page.get_by_placeholder("请输入变量名称").fill(arglist[0])
     page.get_by_placeholder("请输入变量值").fill(arglist[1])
     page.get_by_role("button", name="确认", exact=True).click()
+    return page
 
 
 # 编辑变量
@@ -538,11 +573,13 @@ def change_variable(page: sync_api.Page, arglist: list):
     page.get_by_placeholder("请输入变量值").click()
     page.get_by_placeholder("请输入变量值").fill(arglist[0])
     page.get_by_role("button", name="确认", exact=True).click()
+    return page
 
 
 # 删除变量
 def delete_variable(page: sync_api.Page):
     page.locator("a").filter(has_text=re.compile(r"^删除$")).click()
+    return page
 
 
 # 创建机密变量
@@ -557,6 +594,7 @@ def create_secret(page: sync_api.Page, arglist: list):
     page.get_by_placeholder("请输入变量名称").fill(arglist[1])
     page.get_by_placeholder("请输入变量值").fill(arglist[2])
     page.get_by_role("button", name="确认", exact=True).click()
+    return page
 
 
 # 编辑机密变量
@@ -565,16 +603,19 @@ def change_secret(page: sync_api.Page, arglist: list):
     page.get_by_placeholder("请输入变量值").click()
     page.get_by_placeholder("请输入变量值").fill(arglist[0])
     page.get_by_role("button", name="确认", exact=True).click()
+    return page
 
 
 # 删除机密变量
 def delete_secret(page: sync_api.Page):
     page.locator("a").filter(has_text=re.compile(r"^删除$")).click()
+    return page
 
 
 # 查看体验空间
 def go_spaces(page: sync_api.Page):
     page.locator('#e2e_headerNav_spaces').click()
+    return page
 
 
 # 讨论区
@@ -585,6 +626,7 @@ def create_issue(page: sync_api.Page, arglist: list):
     page.get_by_placeholder('请输入标题').fill(arglist[0])
     page.get_by_placeholder('请输入内容').fill(arglist[1])
     page.locator('.o-btn.o-btn-primary.o-btn-large.o-btn-solid').get_by_text('创建').click()
+    return page
 
 
 # 回复评论
@@ -593,6 +635,7 @@ def review_issue(page: sync_api.Page, arglist: list):
     page.get_by_title(arglist[0]).click()
     page.get_by_placeholder('请输入评论').fill(arglist[1])
     page.locator('.o-btn.o-btn-primary.o-btn-large.o-btn-solid').get_by_text('发表评论').click()
+    return page
 
 
 # 编辑第一条讨论
@@ -601,6 +644,7 @@ def edit_issue(page: sync_api.Page, arglist: list):
     page.get_by_text("编辑", exact=True).click()
     page.get_by_placeholder("请输入评论").first.fill(arglist[0])
     page.get_by_role("button", name="更新").click()
+    return page
 
 
 # 删除第二条讨论
@@ -609,6 +653,7 @@ def delete2nd_issue(page: sync_api.Page):
         "div:nth-child(2) > .issue-discussion-item > .issue-discussion-header > .o-dropdown > .o-icon > svg").click()
     page.get_by_text("删除", exact=True).click()
     page.get_by_role("button", name="确认").click()
+    return page
 
 
 # 举报第二条讨论
@@ -630,6 +675,7 @@ def report2nd_issue(page: sync_api.Page, arglist: list):
     page.get_by_placeholder("请输入举报内容").fill(arglist[0])
     page.get_by_role("button", name="提交").click()
     page.wait_for_timeout(3000)
+    return page
 
 
 # 关闭讨论
@@ -637,6 +683,7 @@ def close_issue(page: sync_api.Page, arglist: list):
     page.locator('.o-tab-nav').get_by_text('讨论区').click()
     page.get_by_title(arglist[0]).click()
     page.get_by_role('button').get_by_text('关闭讨论').click()
+    return page
 
 
 # 重启讨论
@@ -644,6 +691,7 @@ def reuse_issue(page: sync_api.Page, arglist: list):
     page.locator('.o-tab-nav').get_by_text('讨论区').click()
     page.get_by_title(arglist[0]).click()
     page.get_by_role('button').get_by_text('重启讨论').click()
+    return page
 
 
 # 切换讨论区状态
@@ -653,12 +701,14 @@ def change_all_issue(page: sync_api.Page):
         has_text=re.compile(r"^讨论区您可以主动开启或关闭讨论区，关闭后将无法访问讨论区内容$")).locator("div").nth(
         2).click()
     page.wait_for_timeout(3000)
+    return page
 
 
 # 查看讨论
 def view_issue(page: sync_api.Page, arglist: list):
     page.locator('.o-tab-nav').get_by_text('讨论区').click()
     page.get_by_title(arglist[0]).click()
+    return page
 
 
 # 资源处理
@@ -671,6 +721,7 @@ def download_point_file(page: sync_api.Page, arglist: list):
         page.get_by_text("下载文件").click()
     download = download_info.value
     download.save_as("download/" + download.suggested_filename)
+    return page
 
 
 # 编辑模型标签
@@ -690,6 +741,7 @@ def edit_model_tags(page: sync_api.Page, arglist: list):
     page.get_by_placeholder('Update README.md').fill(arglist[-1])
     page.locator('.o-btn.o-btn-primary.o-btn-large.o-btn-solid.o-dlg-btn').get_by_text('提交').click()
     page.wait_for_timeout(200)
+    return page
 
 
 # 新建文件
@@ -710,6 +762,7 @@ def create_file(page: sync_api.Page, arglist: list):
     page.locator('.o-btn.o-btn-primary.o-btn-large.o-btn-solid.o-dlg-btn').get_by_text('提交').click()
     page.wait_for_timeout(2000)
     expect(page.get_by_text('文件太大或不支持展示，')).not_to_be_attached()
+    return page
 
 
 # 删除文件
@@ -722,6 +775,7 @@ def delete_file(page: sync_api.Page, arglist: list):
     page.wait_for_timeout(500)
     page.locator('.o-btn.o-btn-primary.o-btn-large.o-btn-solid.o-dlg-btn').get_by_text('删除').click()
     page.wait_for_timeout(500)
+    return page
 
 
 # 反馈
@@ -737,6 +791,7 @@ def feedback(page: sync_api.Page):
 # 查看文档
 def go_docs(page: sync_api.Page):
     page.locator('#e2e_headerNav_docs').click()
+    return page
 
 
 def_dict = {

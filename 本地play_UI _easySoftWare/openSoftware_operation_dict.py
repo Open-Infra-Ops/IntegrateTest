@@ -121,6 +121,7 @@ def home_download(page: sync_api.Page, arglist: list):
         page.get_by_role("row", name=f"{arglist[0]}").get_by_role("link").click()
         page.wait_for_timeout(1000)
     page1 = expectation.value
+    page1.set_viewport_size({'width': 1880, 'height': 1000})
     str1 = arglist[0].replace("-", " ")
     # page.close()
     expect(page1.get_by_role("heading", name=str1))
@@ -153,7 +154,7 @@ def home_choose_app(page: sync_api.Page, arglist: list):
         page.wait_for_timeout(1000)
         # 定位到所在行
         locator = page.locator('.el-table__row').filter(has_text=arglist[1])
-        locator.locator('a').filter(has_text=re.compile(rf"^{arglist[2]}(?:\(\d+\))?$")).click()
+        locator.locator('a').filter(has_text=re.compile(rf"^{arglist[2]}(?:\(\d+\))?$")).nth(0).click()
         page.wait_for_timeout(1000)
         # 断言传入的第三个参数是存在的（第一个判断不了，因为点完了以后，第一个标签会变）
         expect(page.locator('.o-tag-label').filter(has_text=arglist[2]))
@@ -193,6 +194,7 @@ def CP_enter(page: sync_api.Page):
         page.locator('.o-link-label').get_by_text('协作平台').click()
         page.wait_for_timeout(1000)
     page1 = expectation.value
+    page1.set_viewport_size({'width': 1880, 'height': 1000})
     return page1
 
 
@@ -377,6 +379,7 @@ def field_search_result_detail(page: sync_api.Page, arglist: list):
         page.get_by_role("link", name=arglist[0]).first.click()
         page.wait_for_timeout(1000)
     page1 = expectation.value
+    page1.set_viewport_size({'width': 1880, 'height': 1000})
     page.close()
     # app_binary_download(page)
     return page1
@@ -547,6 +550,7 @@ def RPM_search_result_detail(page: sync_api.Page, arglist: list):
         page.get_by_role("link", name=arglist[0]).first.click()
         page.wait_for_timeout(1000)
     page1 = expectation.value
+    page1.set_viewport_size({'width': 1880, 'height': 1000})
     page.wait_for_timeout(1000)
     page.close()
     # app_binary_download(page)
@@ -618,6 +622,7 @@ def image_search_result_detail(page: sync_api.Page, arglist: list):
         page.get_by_role("link", name=arglist[0]).first.click()
         page.wait_for_timeout(1000)
     page1 = expectation.value
+    page1.set_viewport_size({'width': 1880, 'height': 1000})
     # app_image_copy(page)
     return page1
 
@@ -687,6 +692,7 @@ def OEPKG_search_result_detail(page: sync_api.Page, arglist: list):
         page.get_by_role("link", name=arglist[0]).first.click()
         page.wait_for_timeout(1000)
     page1 = expectation.value
+    page1.set_viewport_size({'width': 1880, 'height': 1000})
     page.close()
     # app_binary_download(page)
     return page1

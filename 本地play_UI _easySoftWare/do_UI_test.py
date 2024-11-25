@@ -14,7 +14,7 @@ import video_maker
 import tkinter as tk
 import tkinter.messagebox
 
-running_home = r"D:\pythonPro"
+running_home = r"D:\PyPros\IntegrateTest"
 # 读取配置文件
 config_list = YamlHandler(rf'{running_home}\本地play_UI _easySoftWare\config\config.yaml').read_yaml()
 
@@ -56,7 +56,7 @@ def do_test():
 
     page = context.new_page()
 
-    page.set_default_timeout(200000)
+    page.set_default_timeout(18000)
     page.set_viewport_size({'width': 1880, 'height': 1000})
     i = 1
 
@@ -138,6 +138,8 @@ def do_test():
 
 
 if __name__ == '__main__':
+    "pip install imageio[ffmpeg]"
+    "pip install imageio[pyav]"
     # print(config_list.keys())
     p = sync_playwright().start()
     # 启动浏览器，返回 Browser 类型对象
