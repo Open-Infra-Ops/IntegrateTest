@@ -157,7 +157,8 @@ def log_out_user(page: sync_api.Page):
 # 收藏并取消收藏
 def like_and_not_like(page: sync_api.Page):
     page.get_by_role("link", name="模型库").click()
-    page.get_by_title("TeleAI / TeleChat-7B-pt").click()
+    # page.get_by_title("TeleAI / TeleChat-7B-pt").click()
+    page.locator('.o-card.o-card-layout-v.o-card-hoverable').first.click()
     page.get_by_role("button", name="收藏").click()
     page.wait_for_timeout(1000)
     page.get_by_role("button", name="收藏").click()
