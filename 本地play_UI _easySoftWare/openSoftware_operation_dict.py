@@ -2,7 +2,7 @@ import re
 from playwright import sync_api
 from playwright.sync_api import expect
 
-
+running_home = r"C:\Users\Administrator\Desktop"
 def open_url(page: sync_api.Page):
     """
     进入生产环境
@@ -453,7 +453,7 @@ def app_binary_download(page: sync_api.Page):
         page.wait_for_timeout(1000)
     download = download_info.value
     page.wait_for_timeout(1000)
-    download.save_as('download/' + download.suggested_filename)
+    download.save_as(running_home+'/本地play_UI_easySoftWare/'+'download/' + download.suggested_filename)
     return page
 
 

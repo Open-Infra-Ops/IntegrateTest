@@ -181,7 +181,7 @@ def make_excel(data: dict,big_key):
                 ws.cell(row=rol_num, column=col_num).alignment = Alignment(horizontal='left', vertical='center',
                                                                            wrapText=True)
     # 保存工作簿
-    wb.save(fr'test_records/{big_key}-{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试执行报告.xlsx')
+    wb.save(fr'C:\Users\Administrator\Desktop\本地play_UI_easySoftWare\test_records/{big_key}-{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试执行报告.xlsx')
 
 
 if __name__ == '__main__':

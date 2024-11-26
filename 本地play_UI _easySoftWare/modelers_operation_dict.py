@@ -160,7 +160,7 @@ def like_and_not_like(page: sync_api.Page):
     # page.get_by_title("TeleAI / TeleChat-7B-pt").click()
     page.locator('.o-card.o-card-layout-v.o-card-hoverable').first.click()
     page.get_by_role("button", name="收藏").click()
-    page.wait_for_timeout(1000)
+    page.wait_for_timeout(3000)
     page.get_by_role("button", name="收藏").click()
     return page
 
@@ -641,7 +641,7 @@ def review_issue(page: sync_api.Page, arglist: list):
 
 # 编辑第一条讨论
 def edit_issue(page: sync_api.Page, arglist: list):
-    page.locator(".o-dropdown > .o-icon > svg").click()
+    page.locator(".o-dropdown > .o-icon > svg").nth(1).click()
     page.get_by_text("编辑", exact=True).click()
     page.get_by_placeholder("请输入评论").first.fill(arglist[0])
     page.get_by_role("button", name="更新").click()

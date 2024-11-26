@@ -14,9 +14,9 @@ import video_maker
 import tkinter as tk
 import tkinter.messagebox
 
-running_home = r"D:\PyPros\IntegrateTest"
+running_home = r"C:\Users\Administrator\Desktop"
 # 读取配置文件
-config_list = YamlHandler(rf'{running_home}\本地play_UI _easySoftWare\config\config.yaml').read_yaml()
+config_list = YamlHandler(rf'{running_home}\本地play_UI_easySoftWare\config\config.yaml').read_yaml()
 
 
 # 这里是个用于打印当前执行case的窗口方法
@@ -156,8 +156,8 @@ if __name__ == '__main__':
         # print(key)
         # continue
 
-        # if key == 'openSoftware':
-        #     continue
+        if key == 'openSoftware':
+            continue
 
         # browser_path = config.get('DEFAULT', 'browser_path')
         # file_path = config.get('DEFAULT', 'file_path')
@@ -170,7 +170,7 @@ if __name__ == '__main__':
         # 用于储存do_test方法返回的case_lists
 
         # 测试图片和视频保存路径
-        test_result_folder = fr"{running_home}\本地play_UI _easySoftWare\test_records\{key}"
+        test_result_folder = fr"{running_home}\本地play_UI_easySoftWare\test_records\{key}"
         # 初始化录制对象
         vm = video_maker.VideoMaker()
         vm.test_fini = False
@@ -185,8 +185,8 @@ if __name__ == '__main__':
 
         vm.make_video(test_result_folder,
                       fr"{test_result_folder}\{key}平台{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试.mp4")
-        send_mail(case_lists, key)
+    send_mail(case_lists, key)
     context.close()
     browser.close()
-    for filename in os.listdir(fr"{running_home}\本地play_UI _easySoftWare\download"):
-        os.remove(os.path.join(fr"{running_home}\本地play_UI _easySoftWare\download", filename))
+    for filename in os.listdir(fr"{running_home}\本地play_UI_easySoftWare\download"):
+        os.remove(os.path.join(fr"{running_home}\本地play_UI_easySoftWare\download", filename))

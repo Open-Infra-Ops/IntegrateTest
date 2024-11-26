@@ -9,8 +9,9 @@ from config import YamlHandler
 import os
 import zipfile
 
+running_home = r"C:\Users\Administrator\Desktop"
 
-running_home = r"D:\PyPros\IntegrateTest"
+
 class QQMail:
     def __init__(self, smtp_sender, smtp_passwd,
                  smtp_receiver):
@@ -62,7 +63,7 @@ class QQMail:
 
 
 def send_mail(test_data, big_key):
-    config_list = YamlHandler(rf'{running_home}\本地play_UI _easySoftWare\config\config.yaml').read_yaml()
+    config_list = YamlHandler(rf'{running_home}\本地play_UI_easySoftWare\config\config.yaml').read_yaml()
     # 读取发件邮箱信息
     lsmtp_sender = '18801113053@163.com'
     lsmtp_password = 'RGTWu33QTNsmV9nj'
@@ -177,9 +178,10 @@ def send_mail(test_data, big_key):
     date = time.localtime()
     qq = QQMail(lsmtp_sender, lsmtp_password, lsmtp_receiver)
     print('数据组装完成，开始写入excel')
+    time.sleep(10)
     make_excel(excel_data, big_key)
     print('excel组装完成,准备压缩全部报告文件')
-
+    time.sleep(10)
     # folders_to_zip = ['records/videos', 'test_records']
     # zip_file_path = f"{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试执行报告.zip"
     # with zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
@@ -193,15 +195,20 @@ def send_mail(test_data, big_key):
     #                 # 添加到zip文件中
     #                 zipf.write(file_path, arcname)
     print('文件压缩完成，准备发送邮件')
+    time.sleep(10)
     if qq.login():
         qq.makeHeader(f"{config_list[big_key]['email_name']} {date.tm_year}年{date.tm_mon}月{date.tm_mday}日",
                       f"{config_list[big_key]['email_name']} {date.tm_year}年{date.tm_mon}月{date.tm_mday}日")
         qq.makeHtml_table(html_table)
         qq.addUploadFile(f"{big_key}-{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试执行报告.xlsx",
-                         fr"{running_home}\本地play_UI _easySoftWare/test_records/{big_key}-{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试执行报告.xlsx")
+                         fr"{running_home}/本地play_UI_easySoftWare/test_records/{big_key}-{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试执行报告.xlsx")
         qq.addUploadFile(f"{big_key}平台{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试.mp4",
-                         fr"{running_home}\本地play_UI _easySoftWare/test_records/{big_key}/{big_key}平台{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试.mp4")
+                         fr"{running_home}/本地play_UI_easySoftWare/test_records/{big_key}/{big_key}平台{date.tm_year}年{date.tm_mon}月{date.tm_mday}日UI自动化测试.mp4")
         qq.send()
-    for filename in os.listdir(fr"{running_home}\本地play_UI _easySoftWare\test_records\{big_key}"):
-        os.remove(os.path.join(fr"{running_home}\本地play_UI _easySoftWare\test_records\{big_key}", filename))
+    print("想要发送邮件")
+    time.sleep(10)
+    for filename in os.listdir(fr"{running_home}/本地play_UI_easySoftWare/test_records/{big_key}"):
+        os.remove(os.path.join(fr"{running_home}/本地play_UI_easySoftWare/test_records/{big_key}", filename))
+    for filename in os.listdir(fr"{running_home}/本地play_UI_easySoftWare/tmp"):
+        os.remove(os.path.join(fr"{running_home}/本地play_UI_easySoftWare/tmp", filename))
     print('邮件发送成功！')
