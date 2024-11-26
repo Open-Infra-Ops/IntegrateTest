@@ -78,3 +78,47 @@ modelers:
                 modelers-模型,
                 modelers-空间,
                 modelers-讨论区
+
+openEuler:
+  lsmtp_receivers1:
+#                    liuyu418@h-partners.com,
+#                    2126744957@qq.com,
+#                    george.cao@huawei.com,
+#                    wangxiaoliang30@h-partners.com,
+#                    guoxiaozhen1@h-partners.com,
+#                    lichaoran1@huawei.com,
+#                    caoyanan5@h-partners.com,
+  lsmtp_receivers:
+#                    2126744957@qq.com,
+#                    liuyu418@h-partners.com,
+                    zhoule12@h-partners.com,
+                    1179845794@qq.com,
+#                    jun.zhongjun@huawei.com,
+#                    george.cao@huawei.com,
+#                    gongzhuangbang1@huawei.com,
+#                    jun.zhongjun@huawei.com,
+#                    george.cao@huawei.com,
+#                    gongzhuangbang1@huawei.com,
+#                    zhaiwenjie1@huawei.com,
+#                    taofeihu1@huawei.com,
+#                    lichaoran1@huawei.com,
+#                    wangxiaoliang30@h-partners.com,
+#                    guoxiaozhen1@h-partners.com,
+#                    zhaiwenjie1@huawei.com,
+#                    zhongyuanke@huawei.com
+  test_case:
+                    \本地play_UI _easySoftWare\test_cases\欧拉社区UI自动化测试用例.xlsx
+  case_numbers: 41
+  operation_dict: openEuler_operation_dict
+  api_tag: modelers
+  email_name:
+                欧拉社区UI自动化冒烟测试报告
+  model_names:
+                openEuler-新手指引,
+                openEuler-账号服务,
+                openEuler-个人中心,
+                openEuler-消息中心,
+                openEuler-导航,
+                openEuler-首页,
+                openEuler-页脚
+
