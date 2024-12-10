@@ -658,7 +658,7 @@ def delete2nd_issue(page: sync_api.Page):
 
 # 举报第二条讨论
 def report2nd_issue(page: sync_api.Page, arglist: list):
-    page.locatorlocator("div:nth-child(2) > .issue-discussion-item > .issue-discussion-header > .header-right > div:nth-child(2) > .o-icon > svg").click()
+    page.locator("div:nth-child(2) > .issue-discussion-item > .issue-discussion-header > .header-right > div:nth-child(2) > .o-icon > svg").click()
     page.locator("li").filter(has_text="举报").click()
     page.get_by_role("button", name="提交").click()
     page.get_by_text("违法违规").click()
